@@ -13,8 +13,6 @@ async function run(): Promise<void> {
     core.info(`Owner: ${owner}`)
     core.info(`Repo: ${repo}`)
 
-    core.info(github.context.issue.number.toString())
-
     const number =
       core.getInput('number') === ''
         ? github.context.issue.number
@@ -50,11 +48,11 @@ async function run(): Promise<void> {
 
     core.info(`Base branch: ${base}`)
 
-    const {data: { required_approving_review_count: requireApprovalCount }} = await client.repos.getPullRequestReviewProtection({
-      owner, repo, branch: base
-    })
+    // const {data: { required_approving_review_count: requireApprovalCount }} = await client.repos.getPullRequestReviewProtection({
+    //   owner, repo, branch: base
+    // })
 
-    if (statuses.length < requireApprovalCount) {
+    if (statuses.length < 2) {
       core.warning("😔 Not enough approvals to add label yet.")
       return
     }

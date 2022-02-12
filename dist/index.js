@@ -1328,7 +1328,6 @@ function run() {
             const [owner, repo] = core.getInput('repo').split('/');
             core.info(`Owner: ${owner}`);
             core.info(`Repo: ${repo}`);
-            core.info(github.context.issue.number.toString());
             const number = core.getInput('number') === ''
                 ? github.context.issue.number
                 : parseInt(core.getInput('number'));
@@ -1354,10 +1353,10 @@ function run() {
                 owner, repo, pull_number: number
             });
             core.info(`Base branch: ${base}`);
-            const { data: { required_approving_review_count: requireApprovalCount } } = yield client.repos.getPullRequestReviewProtection({
-                owner, repo, branch: base
-            });
-            if (statuses.length < requireApprovalCount) {
+            // const {data: { required_approving_review_count: requireApprovalCount }} = await client.repos.getPullRequestReviewProtection({
+            //   owner, repo, branch: base
+            // })
+            if (statuses.length < 2) {
                 core.warning("😔 Not enough approvals to add label yet.");
                 return;
             }
