@@ -1319,7 +1319,6 @@ const github = __importStar(__webpack_require__(469));
 const core = __importStar(__webpack_require__(393));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log("Conolse message");
         try {
             const githubToken = core.getInput('github_token');
             const labels = core
@@ -1332,6 +1331,7 @@ function run() {
             const number = core.getInput('number') === ''
                 ? github.context.issue.number
                 : parseInt(core.getInput('number'));
+            core.info(number.toString());
             if (number == undefined) {
                 throw new Error("No Pull request number found");
             }
