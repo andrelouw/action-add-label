@@ -13,6 +13,8 @@ async function run(): Promise<void> {
     core.info(`Owner: ${owner}`)
     core.info(`Repo: ${repo}`)
 
+    core.info(github.context.issue.number.toString())
+
     const number =
       core.getInput('number') === ''
         ? github.context.issue.number
