@@ -66,7 +66,7 @@ async function run(): Promise<void> {
       issue_number: number
     })
   } catch (e) {
-    core.error(e);
+    // core.error(e);
     core.setFailed(e.message)
   }
 }

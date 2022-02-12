@@ -1369,7 +1369,7 @@ function run() {
             });
         }
         catch (e) {
-            core.error(e);
+            // core.error(e);
             core.setFailed(e.message);
         }
     });
