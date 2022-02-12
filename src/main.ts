@@ -2,12 +2,6 @@ import * as github from '@actions/github';
 import * as core from '@actions/core';
 
 async function run(): Promise<void> {
-  core.exportVariable("ACTIONS_STEP_DEBUG", true)
-  core.setCommandEcho(true)
-  core.debug("Debug message")
-  core.info("info message")
-  core.warning("warn message")
-  core.error("error message")
   console.log("Conolse message")
   try {
     const githubToken = core.getInput('github_token');
@@ -17,13 +11,18 @@ async function run(): Promise<void> {
       .filter(l => l !== '');
 
     const [owner, repo] = core.getInput('repo').split('/');
+    core.info(`Owner: ${owner}`)
+    core.info(`Repo: ${repo}`)
+
     const number =
       core.getInput('number') === ''
         ? github.context.issue.number
         : parseInt(core.getInput('number'));
 
-    core.info(`Owner: ${owner}`)
-    core.info(`Repo: ${repo}`)
+    if (number == undefined) {
+      throw new Error("No Pull request number found")
+    }
+
     core.info(`Pull Request Number: ${number}`)
 
     if (labels.length === 0) {
