@@ -7,13 +7,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Test workflow
-        uses: ./
+        uses: ./action.yml
         with:
           labels: | 
             ci-ready
-#          repo: Gymondo-git/ios-app
-#          number: 2021
-#          base_branch: develop
-#        run: |
-#          echo "hello"
-#        uses: andrelouw/action-add-label@v0.1
