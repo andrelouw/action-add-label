@@ -2,7 +2,6 @@ import * as github from '@actions/github';
 import * as core from '@actions/core';
 
 async function run(): Promise<void> {
-  console.log("Conolse message")
   try {
     const githubToken = core.getInput('github_token');
     const labels = core
@@ -19,6 +18,7 @@ async function run(): Promise<void> {
         ? github.context.issue.number
         : parseInt(core.getInput('number'));
 
+    core.info(number.toString())
     if (number == undefined) {
       throw new Error("No Pull request number found")
     }
