@@ -9,10 +9,11 @@ jobs:
       - name: Test workflow
         uses: ./
         with:
-          number: 1
           labels: | 
-            duplicate
-            documentation
+            ci-ready
+#          repo: Gymondo-git/ios-app
+#          number: 2021
+#          base_branch: develop
 #        run: |
 #          echo "hello"
 #        uses: andrelouw/action-add-label@v0.1
