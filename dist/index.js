@@ -1356,7 +1356,8 @@ function run() {
             // const {data: { required_approving_review_count: requireApprovalCount }} = await client.repos.getPullRequestReviewProtection({
             //   owner, repo, branch: base
             // })
-            if (statuses.length < 2) {
+            const requireApprovalCount = parseInt(core.getInput('required_approval_count'));
+            if (statuses.length < requireApprovalCount) {
                 core.warning("😔 Not enough approvals to add label yet.");
                 return;
             }
