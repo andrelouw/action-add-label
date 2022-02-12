@@ -1,6 +1,21 @@
 name: Add labels
 description: Add some labels
 author: andrelouw
+inputs:
+    github_token:
+        description: A Github token
+        required: false
+        default: ${{ github.token }}
+    repo:
+        description: The owner and repository name. e.g.) Codertocat/Hello-World
+        required: false
+        default: ${{ github.repository }}
+    number:
+        description: The number of the issue or pull request.
+        required: false
+    labels:
+        description: The labels' name to be added. Must be separated with line breaks if there're multiple labels.
+        required: true
 runs:
     using: node12
     main: dist/index.js

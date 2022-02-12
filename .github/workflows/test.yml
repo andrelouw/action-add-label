@@ -4,8 +4,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Test workflow
-        uses: ./action.yml
+        uses: ./
+        with:
+          number: 1
+          labels: | 
+            duplicate
+            documentation
 #        run: |
 #          echo "hello"
 #        uses: andrelouw/action-add-label@v0.1
