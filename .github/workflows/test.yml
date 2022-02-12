@@ -7,7 +7,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Test workflow
-        uses: ./action.yml
+        uses: ./
         with:
           labels: | 
             ci-ready
