@@ -1,4 +1,4 @@
-on: push
+on: pull_request
 
 jobs:
   test:
@@ -11,9 +11,3 @@ jobs:
         with:
           labels: | 
             ci-ready
-#          repo: Gymondo-git/ios-app
-#          number: 2021
-#          base_branch: develop
-#        run: |
-#          echo "hello"
-#        uses: andrelouw/action-add-label@v0.1

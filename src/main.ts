@@ -10,17 +10,25 @@ async function run(): Promise<void> {
       .filter(l => l !== '');
 
     const [owner, repo] = core.getInput('repo').split('/');
+    core.info(`Owner: ${owner}`)
+    core.info(`Repo: ${repo}`)
+
+    core.info(github.context.issue.number.toString())
+
     const number =
       core.getInput('number') === ''
         ? github.context.issue.number
         : parseInt(core.getInput('number'));
 
-    core.info(`Owner: ${owner}`)
-    core.info(`Repo: ${repo}`)
+    if (number == undefined) {
+      core.warning("⚠️ No PR number found, make sure to only run this action on pull requests.")
+      return
+    }
+
     core.info(`Pull Request Number: ${number}`)
 
     if (labels.length === 0) {
-      core.info("⚠️ No labels provided, not doing anything")
+      core.warning("⚠️ No labels provided, not doing anything")
       return
     }
 
@@ -32,7 +40,7 @@ async function run(): Promise<void> {
     const statuses = reviews.filter(r => r.state == "APPROVED")
 
     if (statuses.length == 0) {
-      core.info("😔 No approvals yet, not labeling the PR.")
+      core.warning("😔 No approvals yet, not labeling the PR.")
       return
     }
 
@@ -47,7 +55,7 @@ async function run(): Promise<void> {
     })
 
     if (statuses.length < requireApprovalCount) {
-      core.info("😔 Not enough approvals to add label yet.")
+      core.warning("😔 Not enough approvals to add label yet.")
       return
     }
 
@@ -60,8 +68,8 @@ async function run(): Promise<void> {
       issue_number: number
     })
   } catch (e) {
-    core.error(e);
     core.setFailed(e.message)
   }
 }
+
  run();
