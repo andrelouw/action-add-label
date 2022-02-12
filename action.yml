@@ -1,0 +1,6 @@
+name: Add labels
+description: Add some labels
+author: andrelouw
+runs:
+    using: node12
+    main: dist/index.js

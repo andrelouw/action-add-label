@@ -1,0 +1,11 @@
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test workflow
+        uses: ./action.yml
+#        run: |
+#          echo "hello"
+#        uses: andrelouw/action-add-label@v0.1
