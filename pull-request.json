@@ -1,0 +1,11 @@
+{
+	"pull_request": {
+		"number": 2021,
+		"head": {
+			"ref": "chore/ci-ready-label-automation"
+		},
+		"base": {
+			"ref": "develop"
+		}
+	}
+}
