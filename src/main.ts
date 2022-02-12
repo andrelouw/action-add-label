@@ -2,6 +2,7 @@ import * as github from '@actions/github';
 import * as core from '@actions/core';
 
 async function run(): Promise<void> {
+  core.exportVariable("ACTIONS_STEP_DEBUG", true)
   core.setCommandEcho(true)
   core.debug("Debug message")
   core.info("info message")

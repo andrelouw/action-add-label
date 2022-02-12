@@ -1319,6 +1319,7 @@ const github = __importStar(__webpack_require__(469));
 const core = __importStar(__webpack_require__(393));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
+        core.exportVariable("ACTIONS_STEP_DEBUG", true);
         core.setCommandEcho(true);
         core.debug("Debug message");
         core.info("info message");
