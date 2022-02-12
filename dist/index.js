@@ -1337,7 +1337,7 @@ function run() {
             }
             core.info(`Pull Request Number: ${number}`);
             if (labels.length === 0) {
-                core.info("⚠️ No labels provided, not doing anything");
+                core.warning("⚠️ No labels provided, not doing anything");
                 return;
             }
             const client = github.getOctokit(githubToken);
@@ -1346,7 +1346,7 @@ function run() {
             });
             const statuses = reviews.filter(r => r.state == "APPROVED");
             if (statuses.length == 0) {
-                core.info("😔 No approvals yet, not labeling the PR.");
+                core.warning("😔 No approvals yet, not labeling the PR.");
                 return;
             }
             const { data: { base: { ref: base } } } = yield client.pulls.get({
@@ -1357,7 +1357,7 @@ function run() {
                 owner, repo, branch: base
             });
             if (statuses.length < requireApprovalCount) {
-                core.info("😔 Not enough approvals to add label yet.");
+                core.warning("😔 Not enough approvals to add label yet.");
                 return;
             }
             core.info("💪 Sufficient number of approvals detected, adding labels");
@@ -1369,7 +1369,6 @@ function run() {
             });
         }
         catch (e) {
-            // core.error(e);
             core.setFailed(e.message);
         }
     });

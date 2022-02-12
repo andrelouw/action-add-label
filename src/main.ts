@@ -26,7 +26,7 @@ async function run(): Promise<void> {
     core.info(`Pull Request Number: ${number}`)
 
     if (labels.length === 0) {
-      core.info("⚠️ No labels provided, not doing anything")
+      core.warning("⚠️ No labels provided, not doing anything")
       return
     }
 
@@ -38,7 +38,7 @@ async function run(): Promise<void> {
     const statuses = reviews.filter(r => r.state == "APPROVED")
 
     if (statuses.length == 0) {
-      core.info("😔 No approvals yet, not labeling the PR.")
+      core.warning("😔 No approvals yet, not labeling the PR.")
       return
     }
 
@@ -53,7 +53,7 @@ async function run(): Promise<void> {
     })
 
     if (statuses.length < requireApprovalCount) {
-      core.info("😔 Not enough approvals to add label yet.")
+      core.warning("😔 Not enough approvals to add label yet.")
       return
     }
 
@@ -66,7 +66,6 @@ async function run(): Promise<void> {
       issue_number: number
     })
   } catch (e) {
-    // core.error(e);
     core.setFailed(e.message)
   }
 }
