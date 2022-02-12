@@ -1332,9 +1332,9 @@ function run() {
             const number = core.getInput('number') === ''
                 ? github.context.issue.number
                 : parseInt(core.getInput('number'));
-            core.info(number.toString());
             if (number == undefined) {
-                throw new Error("No Pull request number found");
+                core.warning("⚠️ No PR number found, make sure to only run this action on pull requests.");
+                return;
             }
             core.info(`Pull Request Number: ${number}`);
             if (labels.length === 0) {
