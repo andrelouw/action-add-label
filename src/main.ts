@@ -2,6 +2,12 @@ import * as github from '@actions/github';
 import * as core from '@actions/core';
 
 async function run(): Promise<void> {
+  core.setCommandEcho(true)
+  core.debug("Debug message")
+  core.info("info message")
+  core.warning("warn message")
+  core.error("error message")
+  console.log("Conolse message")
   try {
     const githubToken = core.getInput('github_token');
     const labels = core
@@ -64,4 +70,5 @@ async function run(): Promise<void> {
     core.setFailed(e.message)
   }
 }
+
  run();
